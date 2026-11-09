@@ -1,11 +1,11 @@
 BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//Ethan Scrimnenger//Invitation//EN
+PRODID:-//Brian Eland//Invitation//EN
 BEGIN:VEVENT
-UID:ethan-20261205@invitation
+UID:brian-20261205@invitation
 DTSTAMP:20261109T180000Z
 DTSTART:20261205T103000Z
-SUMMARY:Ethan’s 22nd Birthday
+SUMMARY:Brian Eland’s 70th Birthday
 LOCATION:8 Celeste Crescent\, Discovery
 DESCRIPTION:Dress code: shirts and denim. Colours: white\, black and blue.
 END:VEVENT

@@ -1,4 +1,4 @@
-# Ethan Scrimnenger
+# Brian Eland
 
 Website source and artwork. Open index.html in a browser. No installation or build is required.
 
