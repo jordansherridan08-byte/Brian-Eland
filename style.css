@@ -73,3 +73,11 @@ h1 sup{font-size:37px;font-weight:700;position:relative;vertical-align:top;top:8
 .motion-control:hover{background:#282014}.motion-paused *,.motion-paused *:before,.motion-paused *:after{animation:none!important;transition:none!important}.motion-paused #goldDust{display:none}
 @media(max-width:650px){main{padding-bottom:70px}.motion-control{font-size:14px;padding:9px 12px}}
 @media(prefers-reduced-motion:reduce){#goldDust,.motion-control{display:none!important}.balloon-group{will-change:auto}.invite h1,.invite .join-us,.invite .full-name,.invite .celebrating,.invite .party-details,.invite .dress,.invite .rsvp{animation:none!important;opacity:1;transform:none}}
+
+.countdown{padding:17px 0 19px;border-bottom:2px dotted #ded7c1b3}
+.countdown-label{margin:0 0 12px;font:12px/1.6 Arial,Helvetica,sans-serif;letter-spacing:1.8px;color:#e6d4ab}
+.countdown-numbers{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;max-width:400px;margin:auto}
+.countdown-numbers span{display:flex;flex-direction:column;gap:5px;padding:8px 3px 6px;background:#0a090680;border:1px solid #ad8b4a66;border-radius:3px}
+.countdown-numbers strong{font:400 36px/1.1 Georgia,serif;font-variant-numeric:tabular-nums;color:#f0d38b}
+.countdown-numbers small{font:11px/1.5 Arial,Helvetica,sans-serif;letter-spacing:1px;color:#ece5d5}
+@media(max-width:650px){.countdown{padding:15px 0 17px}.countdown-label{font-size:10px;letter-spacing:1.2px}.countdown-numbers{gap:7px}.countdown-numbers strong{font-size:29px}.countdown-numbers small{font-size:9px;letter-spacing:.6px}}

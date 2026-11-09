@@ -186,3 +186,36 @@ window.addEventListener('pageshow',()=>{
   updateMotion();
 });
 sizeDust();updateMotion();
+
+// Fixed Johannesburg event time; the clock stays correct in every guest's time zone.
+const celebrationTime=new Date('2026-12-05T12:30:00+02:00').getTime();
+const countdownRoot=document.getElementById('countdown');
+const countdownNumbers=document.getElementById('countdownNumbers');
+const countdownLabel=document.getElementById('countdownLabel');
+const countdownFields=['countDays','countHours','countMinutes','countSeconds'].map(id=>document.getElementById(id));
+let countdownTicker=0;
+function updateCountdown(){
+  if(!countdownRoot)return false;
+  const seconds=Math.max(0,Math.ceil((celebrationTime-Date.now())/1000));
+  countdownRoot.hidden=false;
+  if(seconds===0){
+    countdownLabel.textContent='It’s time to celebrate!';
+    countdownNumbers.hidden=true;
+    countdownRoot.setAttribute('aria-label','Brian’s 70th birthday celebration has started.');
+    return false;
+  }
+  const values=[Math.floor(seconds/86400),Math.floor(seconds/3600)%24,Math.floor(seconds/60)%60,seconds%60];
+  countdownNumbers.hidden=false;
+  values.forEach((value,index)=>{const text=String(value).padStart(2,'0');if(countdownFields[index].textContent!==text)countdownFields[index].textContent=text;});
+  countdownRoot.setAttribute('aria-label',`${values[0]} days, ${values[1]} hours, ${values[2]} minutes and ${values[3]} seconds until Brian’s 70th birthday.`);
+  return true;
+}
+function stopCountdown(){clearInterval(countdownTicker);countdownTicker=0;}
+function startCountdown(){
+  stopCountdown();
+  if(updateCountdown()&&!document.hidden)countdownTicker=setInterval(()=>{if(!updateCountdown())stopCountdown();},1000);
+}
+document.addEventListener('visibilitychange',()=>{if(document.hidden)stopCountdown();else startCountdown();});
+window.addEventListener('pagehide',stopCountdown);
+window.addEventListener('pageshow',startCountdown);
+startCountdown();
