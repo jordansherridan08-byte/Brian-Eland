@@ -38,3 +38,38 @@ h1 sup{font-size:37px;font-weight:700;position:relative;vertical-align:top;top:8
 @media(max-width:650px){main{padding:16px 12px 22px}.invite{padding:clamp(105px,26vw,155px) 29px 23px}.join-us{font-size:11px;letter-spacing:1.4px}.age{font-size:clamp(112px,28vw,155px);letter-spacing:-6px}h1 sup{font-size:29px;top:5px}.party-title{font-size:clamp(23px,6vw,34px);letter-spacing:2.5px;margin-top:8px}.celebrating{font-size:11px;padding-top:12px}.full-name{font-size:clamp(39px,10vw,61px);padding:4px 0 12px;margin-inline:-14px!important}.party-details{gap:13px;padding-top:16px;grid-template-columns:.92fr 1.3fr}.date-block{padding-right:13px}.weekday{font-size:14px;letter-spacing:1.2px}.date-block strong{font-size:18px;letter-spacing:.2px}.year{font-size:17px;letter-spacing:2px}.party-time{font-size:39px}.venue{font-size:17px;line-height:1.4;margin-top:5px}.dress-name{font-size:19px}.dress-colours{font-size:16px}.detail-label{font-size:11px}.dress{padding-bottom:14px}h2{font-size:16px}.rsvp{padding-top:13px}.phone{font-size:23px;letter-spacing:1.6px}.letter-slip{gap:10px}.envelope-scene{width:min(90vw,105svh)}}
 @media(max-width:350px){.invite{padding-inline:22px}.full-name{font-size:36px}.join-us{font-size:10px}.party-title{font-size:22px}.party-details{gap:10px}.date-block{padding-right:10px}.weekday{font-size:13px}.date-block strong{font-size:16px}.venue{font-size:16px}h2{font-size:15px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}.letter-opener,.seal-piece,.wax-fleck{display:none!important}.invite{opacity:1;transform:none}}
+
+/* Separate the original balloon artwork into moving corners and a still centre. */
+.invite:before{display:none}
+.celebration-art{position:absolute;inset:0 0 auto;aspect-ratio:2/3;z-index:-2;pointer-events:none;overflow:hidden;mask-image:linear-gradient(#000 0%,#000 76%,transparent 100%)}
+.art-base,.balloon-group{position:absolute;inset:0;background:url('balloons-gold.png') center top/100% auto no-repeat}
+.art-base{mask-image:linear-gradient(90deg,transparent 27%,#000 33%,#000 67%,transparent 73%),linear-gradient(transparent 27%,#000 35%);mask-composite:add}
+.balloon-group{will-change:transform}
+.balloons-left{clip-path:polygon(0 0,39% 0,36% 45%,0 48%);transform-origin:17% 8%;animation:balloon-sway-left 7.4s ease-in-out infinite}
+.balloons-right{clip-path:polygon(61% 0,100% 0,100% 48%,64% 45%);transform-origin:84% 7%;animation:balloon-sway-right 8.7s -2.4s ease-in-out infinite}
+@keyframes balloon-sway-left{0%,100%{transform:translate3d(-1px,2px,0) rotate(-.8deg)}50%{transform:translate3d(4px,-7px,0) rotate(1.1deg)}}
+@keyframes balloon-sway-right{0%,100%{transform:translate3d(1px,-2px,0) rotate(.8deg)}50%{transform:translate3d(-4px,6px,0) rotate(-1.1deg)}}
+.fairy-lights{position:absolute;inset:0;pointer-events:none}
+.fairy-lights i{position:absolute;left:var(--x);top:var(--y);width:4px;height:4px;border-radius:50%;background:#fff7d9;box-shadow:0 0 8px 3px #fbd27c80,0 0 19px 8px #dca83f24;animation:fairy-twinkle 3.7s var(--delay) ease-in-out infinite}
+@keyframes fairy-twinkle{0%,100%{opacity:.3;transform:scale(.8)}50%{opacity:.9;transform:scale(1.3)}}
+.opening:before{animation:opening-glow 9s ease-in-out infinite}
+@keyframes opening-glow{0%,100%{opacity:.42}50%{opacity:.65}}
+.seal:before{content:"";position:absolute;inset:-13px;border-radius:50%;background:radial-gradient(circle,transparent 48%,#e9be632a 65%,transparent 74%);animation:seal-halo 4.8s ease-in-out infinite}
+@keyframes seal-halo{0%,100%{opacity:.4;transform:scale(.95)}50%{opacity:.9;transform:scale(1.14)}}
+.age{background-image:linear-gradient(115deg,transparent 34%,#fff4c5b3 49%,transparent 64%),url('gold-glitter.svg');background-size:280% 100%,105px 105px;background-position:160% 0,0 0;animation:gold-sheen 7.5s ease-in-out infinite}
+@keyframes gold-sheen{0%,30%{background-position:160% 0,0 0}65%,100%{background-position:-90% 0,0 0}}
+.invitation-open .join-us{animation:soft-premiere 1s .08s ease both}
+.invitation-open h1{animation:number-premiere 1.55s cubic-bezier(.16,.8,.2,1) both}
+.invitation-open .full-name{animation:soft-premiere 1.3s .28s ease both}
+.invitation-open .celebrating{animation:soft-premiere 1s .2s ease both}
+.invitation-open .party-details{animation:soft-premiere 1.15s .45s ease both}
+.invitation-open .dress{animation:soft-premiere 1.15s .6s ease both}
+.invitation-open .rsvp{animation:soft-premiere 1.15s .75s ease both}
+.intro-complete .join-us,.intro-complete h1,.intro-complete .full-name,.intro-complete .celebrating,.intro-complete .party-details,.intro-complete .dress,.intro-complete .rsvp{animation:none!important}
+@keyframes number-premiere{from{opacity:0;transform:translateY(22px) scale(1.16)}to{opacity:1;transform:none}}
+@keyframes soft-premiere{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+#goldDust{position:fixed;inset:0;z-index:45;width:100%;height:100%;pointer-events:none;opacity:.85}
+.motion-control{position:fixed;z-index:70;right:max(12px,env(safe-area-inset-right));bottom:max(12px,env(safe-area-inset-bottom));min-height:44px;padding:9px 15px;font:15px/1.4 Arial,Helvetica,sans-serif;color:#f0d594;background:#0d0c09ed;border:1px solid #b7924a80;border-radius:4px;box-shadow:0 3px 15px #0007}
+.motion-control:hover{background:#282014}.motion-paused *,.motion-paused *:before,.motion-paused *:after{animation:none!important;transition:none!important}.motion-paused #goldDust{display:none}
+@media(max-width:650px){main{padding-bottom:70px}.motion-control{font-size:14px;padding:9px 12px}}
+@media(prefers-reduced-motion:reduce){#goldDust,.motion-control{display:none!important}.balloon-group{will-change:auto}.invite h1,.invite .join-us,.invite .full-name,.invite .celebrating,.invite .party-details,.invite .dress,.invite .rsvp{animation:none!important;opacity:1;transform:none}}
