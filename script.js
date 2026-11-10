@@ -2,6 +2,8 @@ const opening=document.getElementById('opening');
 const envelope=document.getElementById('envelope');
 const openButton=document.getElementById('openButton');
 const main=document.getElementById('main');
+const invitationScene=document.getElementById('inviteScene');
+const rsvpScene=document.getElementById('rsvp');
 const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)');
 const motionToggle=document.getElementById('motionToggle');
 const dustCanvas=document.getElementById('goldDust');
@@ -11,6 +13,21 @@ let opened=false,effectsPaused=false,flapTimer=0,revealTimer=0,openingHideTimer=
 function settleIntro(){
   clearTimeout(introTimer);introTimer=0;
   document.body.classList.add('intro-complete');
+}
+
+function showScene(name){
+  const showRsvp=name==='rsvp';
+  invitationScene.hidden=showRsvp;
+  rsvpScene.hidden=!showRsvp;
+  document.body.classList.toggle('showing-rsvp',showRsvp);
+  window.scrollTo(0,0);
+  const heading=document.getElementById(showRsvp?'rsvpPageTitle':'inviteTitle');
+  heading.setAttribute('tabindex','-1');
+  heading.focus({preventScroll:true});
+}
+
+function showSceneFromLocation(){
+  showScene(window.location.hash==='#rsvp'?'rsvp':'invite');
 }
 
 function revealInvitation(){
@@ -24,10 +41,7 @@ function revealInvitation(){
   document.body.classList.add('invitation-open');
   if(reducedMotion.matches||effectsPaused||document.body.classList.contains('intro-complete'))settleIntro();
   else introTimer=setTimeout(settleIntro,2100);
-  window.scrollTo(0,0);
-  const title=document.getElementById('inviteTitle');
-  title.setAttribute('tabindex','-1');
-  title.focus({preventScroll:true});
+  showScene('invite');
   openingHideTimer=setTimeout(()=>{opening.hidden=true;},reducedMotion.matches||effectsPaused?0:650);
   releaseGold();
 }
@@ -220,9 +234,12 @@ window.addEventListener('pagehide',stopCountdown);
 window.addEventListener('pageshow',startCountdown);
 startCountdown();
 
-// Direct links show the relevant part of the same invitation without replaying the envelope.
-if(window.location.hash==='#inviteTitle'||window.location.hash==='#rsvp'){
+// Scene links behave like the MD invite: one screen at a time, with browser Back support.
+function skipOpeningToScene(){
   opened=true;
+  clearTimeout(flapTimer);
+  clearTimeout(revealTimer);
+  clearTimeout(openingHideTimer);
   openButton.disabled=true;
   envelope.setAttribute('aria-disabled','true');
   main.hidden=false;
@@ -231,8 +248,10 @@ if(window.location.hash==='#inviteTitle'||window.location.hash==='#rsvp'){
   document.body.classList.remove('opening-active');
   document.body.classList.add('invitation-open');
   settleIntro();
-  const target=document.getElementById(window.location.hash==='#rsvp'?'rsvp':'inviteTitle');
-  target.setAttribute('tabindex','-1');
-  target.focus({preventScroll:true});
-  if(window.location.hash==='#rsvp')target.scrollIntoView({block:'start'});
+  showSceneFromLocation();
 }
+if(window.location.hash==='#inviteTitle'||window.location.hash==='#rsvp')skipOpeningToScene();
+window.addEventListener('hashchange',()=>{
+  if(opened)showSceneFromLocation();
+  else if(window.location.hash==='#inviteTitle'||window.location.hash==='#rsvp')skipOpeningToScene();
+});

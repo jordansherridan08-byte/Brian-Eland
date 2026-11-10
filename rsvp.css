@@ -25,10 +25,15 @@
 @media(max-width:480px){.rsvp-page .rsvp-main{padding:14px 18px 30px}.rsvp-event{margin-bottom:16px;font-size:17px;letter-spacing:.3px}#rsvpPageTitle{font-size:clamp(45px,12vw,58px);letter-spacing:-1.2px}.rsvp-subtitle{font-size:23px;margin:22px 0 15px}.rsvp-help,.rsvp-deadline{font-size:18px}.rsvp-deadline time{white-space:normal}.rsvp-contact{padding:23px 19px}.rsvp-contact-name{font-size:33px}.rsvp-contact-phone{margin:11px 0 20px}.rsvp-back{margin-bottom:18px}.rsvp-message-note{font-size:17px}}
 @media(prefers-reduced-motion:reduce){.rsvp-button,.whatsapp-button,.rsvp-card{animation:none;transition:none}}
 
-/* Continue the invitation into RSVP without adding a separate page surface. */
-.rsvp-inline{position:relative;isolation:isolate;width:100%;margin:0 auto;padding:80px 28px 12px;border:0;background:transparent;scroll-margin-top:32px}
-.rsvp-inline:before{opacity:.4;mask-image:linear-gradient(transparent,#000 18%,#000 85%,transparent)}
-.rsvp-inline #rsvpPageTitle{scroll-margin-top:32px}
-.rsvp-inline:focus,.rsvp-inline #rsvpPageTitle:focus{outline:none}
-@media(max-width:1000px){.rsvp-inline .rsvp-contact-list{grid-template-columns:1fr;max-width:560px;margin:28px auto 0;gap:18px}.rsvp-inline .rsvp-contact{padding:24px 28px}.rsvp-inline .whatsapp-button{max-width:420px}}
-@media(max-width:650px){.rsvp-inline{padding:64px 0 8px}.rsvp-inline .rsvp-contact{padding:23px 19px}}
+/* RSVP is a screen within the invitation; only the active screen is shown. */
+.showing-rsvp #main{background:radial-gradient(ellipse at 50% 15%,#3d261c35,transparent 72%),repeating-linear-gradient(120deg,#b5935f03 0 1px,transparent 1px 5px),#100d0c}
+.showing-rsvp .grain{opacity:.16}
+.rsvp-scene{position:relative;isolation:isolate;width:100%;min-height:calc(100svh - 68px);margin:0 auto;padding:18px 8px 10px;border:0;background:transparent;animation:rsvp-scene-arrive .35s ease both}
+.rsvp-scene:before{opacity:.65;mask-image:linear-gradient(transparent,#000 12%,#000 90%,transparent)}
+.rsvp-scene:focus,.rsvp-scene #rsvpPageTitle:focus{outline:none}
+.rsvp-scene-nav{display:flex;justify-content:center;margin-top:28px}
+.rsvp-scene-nav .rsvp-button{width:min(100%,340px);max-width:none;min-width:0;margin:0;padding:13px 18px;letter-spacing:.5px;white-space:normal;text-wrap:balance}
+@keyframes rsvp-scene-arrive{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media(max-width:1000px){.rsvp-scene .rsvp-contact-list{grid-template-columns:1fr;max-width:560px;margin:28px auto 0;gap:18px}.rsvp-scene .rsvp-contact{padding:24px 28px}.rsvp-scene .whatsapp-button{max-width:420px}}
+@media(max-width:650px){.showing-rsvp #main{padding-top:76px}.showing-rsvp .motion-control{position:absolute;top:12px;bottom:auto}.rsvp-scene{min-height:calc(100svh - 146px);padding:6px 0 8px}.rsvp-scene .rsvp-contact{padding:23px 19px}.rsvp-scene-nav{margin-top:24px}.rsvp-scene-nav .rsvp-button{width:100%;max-width:340px;min-width:0}}
+@media(prefers-reduced-motion:reduce){.rsvp-scene{animation:none}}
