@@ -220,8 +220,8 @@ window.addEventListener('pagehide',stopCountdown);
 window.addEventListener('pageshow',startCountdown);
 startCountdown();
 
-// The return link from the RSVP page opens the invitation without replaying the envelope.
-if(window.location.hash==='#inviteTitle'){
+// Direct links show the relevant part of the same invitation without replaying the envelope.
+if(window.location.hash==='#inviteTitle'||window.location.hash==='#rsvp'){
   opened=true;
   openButton.disabled=true;
   envelope.setAttribute('aria-disabled','true');
@@ -231,7 +231,8 @@ if(window.location.hash==='#inviteTitle'){
   document.body.classList.remove('opening-active');
   document.body.classList.add('invitation-open');
   settleIntro();
-  const title=document.getElementById('inviteTitle');
-  title.setAttribute('tabindex','-1');
-  title.focus({preventScroll:true});
+  const target=document.getElementById(window.location.hash==='#rsvp'?'rsvp':'inviteTitle');
+  target.setAttribute('tabindex','-1');
+  target.focus({preventScroll:true});
+  if(window.location.hash==='#rsvp')target.scrollIntoView({block:'start'});
 }
