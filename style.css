@@ -17,12 +17,14 @@ body{background:#080706;color:var(--paper)}
 .front-left,.front-right{background:linear-gradient(140deg,#1b1811,#050505)}
 .seal,.seal-piece{background:radial-gradient(circle at 35% 28%,#efd692,#bd8d38 43%,#644619 78%);color:#31210a;border-color:#74501b;box-shadow:0 3px 1px #241b0b,0 7px 11px #000a,inset 0 0 0 3px #fff1bf66}
 .seal:after{border-color:#67491f99}.open-button{background:linear-gradient(115deg,#b98d3e,#f0d897 48%,#c29a4e);color:#171209;border-color:#dec38b;box-shadow:0 3px 25px #0008;min-height:54px}.open-button:hover{background:#f6df9f}
-main{min-height:100svh;padding:30px 20px 38px;background:radial-gradient(ellipse at 50% 30%,#49351c44,transparent 65%),#080706}
-.invite{position:relative;isolation:isolate;width:min(100%,620px);margin:auto;padding:174px 49px 28px;background:#141413;box-shadow:0 24px 80px #000c,0 0 0 1px #b48d4c65;animation:arrive .7s ease both;text-align:center}
+main{min-height:100svh;padding:30px 20px 38px;background:radial-gradient(ellipse at 50% 30%,#49351c33,transparent 65%),#080706}
+#main{overflow:hidden}
+.invite{position:relative;isolation:isolate;width:min(100%,620px);margin:auto;padding:174px 49px 28px;background:transparent;box-shadow:none;animation:arrive .7s ease both;text-align:center}
 .invite:before{content:"";position:absolute;inset:0 0 auto;aspect-ratio:2/3;z-index:-2;pointer-events:none;background:url('balloons-gold.png') center top/100% auto no-repeat;mask-image:linear-gradient(#000 0%,#000 76%,transparent 100%)}
-.invite:after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(transparent 60%,#14141399 100%)}
+.invite:after{display:none}
 .party-heading p{margin:0}.join-us{font-size:13px;line-height:1.4;letter-spacing:2px;color:#f5f3ef;text-shadow:0 2px 12px #000}
 h1{font-weight:700;line-height:1;margin:10px 0 0;position:relative;white-space:nowrap}
+#inviteTitle:focus{outline:none}
 .age{display:inline-block;font-family:Arial,Helvetica,sans-serif;font-weight:800;font-size:165px;line-height:.95;letter-spacing:-8px;padding-right:5px;color:#e6c36f;background:#d4ac58 url('gold-glitter.svg') center/105px 105px;background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 2px 2px #0008)}
 h1 sup{font-size:37px;font-weight:700;position:relative;vertical-align:top;top:8px;letter-spacing:-1px;margin-left:3px;color:#f9f9f7}
 .party-title{display:block;font:700 37px/1.2 Arial,Helvetica,sans-serif;letter-spacing:4px;color:#fff;margin:7px -10px 0;text-shadow:0 2px 5px #000a}
@@ -41,7 +43,7 @@ h1 sup{font-size:37px;font-weight:700;position:relative;vertical-align:top;top:8
 
 /* Separate the original balloon artwork into moving corners and a still centre. */
 .invite:before{display:none}
-.celebration-art{position:absolute;inset:0 0 auto;aspect-ratio:2/3;z-index:-2;pointer-events:none;overflow:hidden;mask-image:linear-gradient(#000 0%,#000 76%,transparent 100%)}
+.celebration-art{position:absolute;top:-30px;left:50%;width:min(1120px,100vw);aspect-ratio:2/3;transform:translateX(-50%);z-index:-2;pointer-events:none;overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent),linear-gradient(180deg,transparent,#000 4%,#000 45%,transparent 92%);mask-composite:intersect}
 .art-base,.balloon-group{position:absolute;inset:0;background:url('balloons-gold.png') center top/100% auto no-repeat}
 .art-base{mask-image:linear-gradient(90deg,transparent 27%,#000 33%,#000 67%,transparent 73%),linear-gradient(transparent 27%,#000 35%);mask-composite:add}
 .balloon-group{will-change:transform}
@@ -71,7 +73,7 @@ h1 sup{font-size:37px;font-weight:700;position:relative;vertical-align:top;top:8
 #goldDust{position:fixed;inset:0;z-index:45;width:100%;height:100%;pointer-events:none;opacity:.85}
 .motion-control{position:fixed;z-index:70;right:max(12px,env(safe-area-inset-right));bottom:max(12px,env(safe-area-inset-bottom));min-height:44px;padding:9px 15px;font:15px/1.4 Arial,Helvetica,sans-serif;color:#f0d594;background:#0d0c09ed;border:1px solid #b7924a80;border-radius:4px;box-shadow:0 3px 15px #0007}
 .motion-control:hover{background:#282014}.motion-paused *,.motion-paused *:before,.motion-paused *:after{animation:none!important;transition:none!important}.motion-paused #goldDust{display:none}
-@media(max-width:650px){main{padding-bottom:70px}.motion-control{font-size:14px;padding:9px 12px}}
+@media(max-width:650px){main{padding-bottom:70px}.motion-control{font-size:14px;padding:9px 12px}.invitation-open .motion-control{top:max(12px,env(safe-area-inset-top));bottom:auto}}
 @media(prefers-reduced-motion:reduce){#goldDust,.motion-control{display:none!important}.balloon-group{will-change:auto}.invite h1,.invite .join-us,.invite .full-name,.invite .celebrating,.invite .party-details,.invite .dress,.invite .rsvp{animation:none!important;opacity:1;transform:none}}
 
 .countdown{padding:17px 0 19px;border-bottom:2px dotted #ded7c1b3}
