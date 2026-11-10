@@ -219,3 +219,19 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden)stopCountdo
 window.addEventListener('pagehide',stopCountdown);
 window.addEventListener('pageshow',startCountdown);
 startCountdown();
+
+// The return link from the RSVP page opens the invitation without replaying the envelope.
+if(window.location.hash==='#inviteTitle'){
+  opened=true;
+  openButton.disabled=true;
+  envelope.setAttribute('aria-disabled','true');
+  main.hidden=false;
+  opening.hidden=true;
+  opening.inert=true;
+  document.body.classList.remove('opening-active');
+  document.body.classList.add('invitation-open');
+  settleIntro();
+  const title=document.getElementById('inviteTitle');
+  title.setAttribute('tabindex','-1');
+  title.focus({preventScroll:true});
+}

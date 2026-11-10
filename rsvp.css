@@ -1,0 +1,25 @@
+.rsvp-button,.whatsapp-button{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:13px 24px;border:1px solid #dec38b;border-radius:4px;background:linear-gradient(115deg,#b98d3e,#f0d897 48%,#c29a4e);color:#171209;font:600 19px/1.4 Arial,Helvetica,sans-serif;text-align:center;text-decoration:none;box-shadow:0 3px 22px #0006}
+.rsvp-button{min-width:190px;margin-top:16px}
+.rsvp-button:hover,.whatsapp-button:hover{background:#f6df9f}
+.rsvp-page{min-height:100svh;background:#080706}
+.rsvp-page .rsvp-main{min-height:100svh;padding:28px 20px 40px;background:radial-gradient(ellipse at 50% 20%,#49351c55,transparent 70%),#080706}
+.rsvp-card{position:relative;isolation:isolate;width:min(100%,620px);margin:auto;padding:22px 38px 32px;border:1px solid #b48d4c85;background:#141413;box-shadow:0 24px 80px #000b;text-align:center;overflow:hidden}
+.rsvp-card:before{content:"";position:absolute;inset:0 0 auto;height:250px;z-index:-1;pointer-events:none;background:linear-gradient(#141413a6,#141413dd 60%,#141413),url('balloons-gold.png') center top/100% auto no-repeat}
+.rsvp-back{display:flex;align-items:center;width:max-content;max-width:100%;min-height:48px;margin-bottom:10px;color:#f0d594;font:400 17px/1.5 Arial,Helvetica,sans-serif;text-align:left;text-decoration:none;text-underline-offset:5px}
+.rsvp-back:hover{text-decoration:underline}
+.rsvp-kicker{margin:5px 0 5px;color:#e8d9ba;font:400 17px/1.5 Arial,Helvetica,sans-serif;letter-spacing:1.5px}
+#rsvpPageTitle{margin:0;color:#f8f4ec;font:700 clamp(38px,9vw,50px)/1.2 Arial,Helvetica,sans-serif;letter-spacing:4px;white-space:normal}
+.rsvp-event{margin:7px 0 13px;color:#eac467;font:400 clamp(45px,10vw,61px)/1.15 Allura,'Brush Script MT',cursive;overflow-wrap:anywhere}
+.rsvp-deadline{margin:0;padding:0 0 19px;border-bottom:2px dotted #ded7c18c;color:#eee8dc;font:400 17px/1.6 Arial,Helvetica,sans-serif}
+.rsvp-deadline time{display:inline-block}
+.rsvp-help{max-width:440px;margin:19px auto;color:#f3ede1;font:400 18px/1.55 Arial,Helvetica,sans-serif}
+.rsvp-contact-list{display:grid;gap:15px;margin:0;padding:0}
+.rsvp-contact{min-width:0;padding:18px 20px 20px;border:1px solid #ac895080;border-radius:5px;background:linear-gradient(125deg,#29231799,#0d0c0acc)}
+.rsvp-contact-name{margin:0;color:#f8f1e1;font:600 22px/1.4 Arial,Helvetica,sans-serif;overflow-wrap:anywhere}
+.rsvp-contact-phone{display:block;margin:3px 0 14px;color:#dfd4bd;font:400 18px/1.5 Arial,Helvetica,sans-serif;font-variant-numeric:tabular-nums;letter-spacing:.6px}
+.whatsapp-button{width:100%;max-width:370px}
+.whatsapp-icon{flex:none;width:24px;height:24px;fill:currentColor}
+.rsvp-message-note{max-width:440px;margin:20px auto 0;color:#ded4be;font:400 17px/1.55 Arial,Helvetica,sans-serif}
+@media(max-width:650px){.rsvp-page .rsvp-main{padding:14px 12px 28px}.rsvp-card{padding:16px 23px 25px}.rsvp-kicker{letter-spacing:1px}.rsvp-contact{padding:16px}.rsvp-help{margin-block:17px}.rsvp-button{width:100%;max-width:280px}}
+@media(max-width:350px){.rsvp-card{padding-inline:17px}.rsvp-contact{padding:15px 12px}.whatsapp-button{padding-inline:12px;font-size:18px}.rsvp-event{font-size:43px}.rsvp-contact-name{font-size:21px}}
+@media(prefers-reduced-motion:reduce){.rsvp-button,.whatsapp-button,.rsvp-card{animation:none;transition:none}}
